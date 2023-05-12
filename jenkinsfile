@@ -1,0 +1,48 @@
+Pipeline {
+Agent none
+stages {
+
+stage ('checkout') {
+step{
+ sh '''
+  echo "passed"
+  echo "checkout skip"
+  ''' 
+    }
+  }
+  
+  stage ('Build and test') {
+  step{
+  sh ''' ls -ltr
+  mvn clean
+  mvn install
+  mvn clean package 
+  // build the project and create a JAR file
+  // sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
+  
+    }
+   }
+   
+   stage ('static code analysis') {
+   environment {
+   sonar="http://localhost:9000"
+   }
+   steps {
+        withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+        }
+    }
+   }
+   
+   stage('docker build') {
+   environment {
+   Dockerhub:""
+   
+   }
+   
+   }
+  
+  
+ }
+ 
+}
