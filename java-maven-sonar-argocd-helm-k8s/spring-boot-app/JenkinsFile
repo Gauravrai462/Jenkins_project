@@ -15,10 +15,10 @@ pipeline {
     }
     
     stage ('clean') {
-      step {
+      steps {
         cleanWs()
-   }
-  }
+     }
+    }
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
