@@ -6,7 +6,7 @@ metadata:
     app: spring-boot-app
 spec:
   replicas: 2
-  seclator:
+  seclector:
     matchlabels:
       app: spring-boot-app
     template:
