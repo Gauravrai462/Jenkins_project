@@ -7,18 +7,18 @@ pipeline {
   }
   
   stages {
-  
-  stage ('clean') {
-  step {
-  cleanWs()
-   }
-  }
     stage('Checkout') {
       steps {
         sh 'echo passed'
         //git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git'
       }
     }
+    
+    stage ('clean') {
+      step {
+        cleanWs()
+   }
+  }
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
