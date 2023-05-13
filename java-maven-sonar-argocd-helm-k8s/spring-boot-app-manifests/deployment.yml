@@ -1,1 +1,24 @@
-
+apiVersion: app/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+  labels:
+    app: spring-boot-app
+spec:
+  replicas: 2
+  seclator:
+    matchlabels:
+      app: spring-boot-app
+    template:
+      metadata:
+        labels:
+          app: spring-boot-app
+spec:
+  containers:
+    name: spring-boot-app
+    image: raigaurav95/test:11
+    ports:
+     - containerPort: 8080
+          
+ 
+   
