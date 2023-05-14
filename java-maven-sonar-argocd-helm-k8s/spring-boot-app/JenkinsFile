@@ -6,6 +6,11 @@ pipeline {
     }
   }
   
+  environment {
+        DOCKER_IMAGE = 'your-docker-image:tag
+        
+        }
+  
   stages {
     stage('Checkout') {
       steps {
@@ -32,7 +37,7 @@ pipeline {
       }
     }*/
    
-   stage('Build and Push Docker Image') {
+   /*stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
@@ -47,9 +52,23 @@ pipeline {
             }
         }
       }
-    }
+    }*/
+  
+   stage('Build Docker Image') {
+          steps {
+                sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t $DOCKER_IMAGE .'
+            }
+        }
+        
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([string(credentialsId: 'docker-cred', variable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u raigaurav95 -p Gaurav@12'
+                    sh 'docker push $DOCKER_IMAGE'
+                }
+            }
+        }
 
-    
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "Jenkins_project"
