@@ -31,23 +31,7 @@ pipeline {
         }
       }
     }
-    /*stage('Build and Push Docker Image') {
-      environment {
-        DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
-        // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
-        REGISTRY_CREDENTIALS = credentials('docker-cred')
-      }
-      steps {
-        script {
-            sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
-            def dockerImage = docker.image("${DOCKER_IMAGE}")
-            docker.withRegistry(credentialsId: 'docker-cred', url: 'https://hub.docker.com/')  {
-                dockerImage.push()
-            }
-        }
-      }
-    }*/
-    
+   
   stage('Build Docker Image') {
   environment {
         DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
