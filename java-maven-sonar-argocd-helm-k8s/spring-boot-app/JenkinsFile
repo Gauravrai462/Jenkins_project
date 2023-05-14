@@ -8,6 +8,8 @@ pipeline {
   
   environment {
         DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
+        DOCKER_PASSWORD= "Gaurav@12"
+        DOCKER_USERNAME= "raigaurav95"
         
         }
   
@@ -62,8 +64,8 @@ pipeline {
         
         stage('Push Docker Image') {
             steps {
-                withCredentials([string(credentialsId: 'docker-cred', variable: 'DOCKER_PASSWORD')]) {
-                    sh 'docker login -u raigaurav95 -p Gaurav@12'
+                ithCredentials([usernamePassword(credentialsId: 'docker-cred', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                     sh 'docker push $DOCKER_IMAGE'
                 }
             }
