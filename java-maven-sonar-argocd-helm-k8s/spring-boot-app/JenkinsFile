@@ -10,6 +10,8 @@ pipeline {
         DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
         DOCKER_PASSWORD= "Gaurav@12"
         DOCKER_USERNAME= "raigaurav95"
+        GIT_REPO_NAME = "Jenkins_project"
+        GIT_USER_NAME = "Gauravrai462"
         
         }
   
@@ -72,10 +74,6 @@ pipeline {
         }
 
     stage('Update Deployment File') {
-        environment {
-            GIT_REPO_NAME = "Jenkins_project"
-            GIT_USER_NAME = "Gauravrai462"
-        }
         steps {
             withCredentials([string(credentialsId: 'Github-CICD', variable: 'GITHUB_TOKEN')]) {
                 sh '''
