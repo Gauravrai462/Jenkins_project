@@ -32,28 +32,22 @@ pipeline {
       }
     }
    
-  stage('Build Docker Image') {
-  environment {
+   stage('Build and Push Docker Image') {
+      environment {
         DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
         REGISTRY_CREDENTIALS = credentials('docker-cred')
-         }
-        
-            steps {
-                sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
-            }
-        
-        
-        stage('Push Docker Image') {
-            steps {
-                withCredentials([string(credentialsId: 'docker-cred', variable: 'DOCKER_PASSWORD')]) {
-                    sh 'docker login -u raigaurav95 -p $DOCKER_PASSWORD'
-                    sh 'docker push ${DOCKER_IMAGE}'
-                
+      }
+      steps {
+        script {
+            sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
+            def dockerImage = docker.image("${DOCKER_IMAGE}")
+            docker.withRegistry(credentialsId: 'docker-cred', url: 'https://hub.docker.com/')  {
+                dockerImage.push()
             }
         }
+      }
     }
-}
 
     
     stage('Update Deployment File') {
