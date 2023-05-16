@@ -20,9 +20,7 @@ pipeline {
     stage('Clean workspace') {
                 steps {
                     cleanWs()
-                    sh 'printenv'
-                    sh '/var/lib/jenkins/workspace$ | sudo rm -rf spring_boot@tmp'
-                    sh '/var/lib/jenkins/workspace$ | sudo rm -rf spring_boot'
+                    
                 }
             }
 
