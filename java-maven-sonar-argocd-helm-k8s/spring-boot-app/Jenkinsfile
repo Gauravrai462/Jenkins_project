@@ -13,16 +13,18 @@ pipeline {
        
         
         }
+
   
-  stage('Clean workspace') {
+  stages {
+    
+    stage('Clean workspace') {
                 steps {
                     cleanWs()
                     sh 'printenv'
                 }
             }
 
-  
-  stages {
+    
     stage('Checkout') {
       steps {
         sh 'echo passed'
