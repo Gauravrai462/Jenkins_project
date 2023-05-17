@@ -21,14 +21,14 @@ pipeline {
   
   stages {
     
-    stage('Clean workspace') {
+    /*stage('Clean workspace') {
                 steps {
                   
                     sh 'sudo rm -rf var/lib/jenkins/workspace/*'
                    
                     
                 }
-            }
+            }*/
 
     
     stage('Checkout') {
