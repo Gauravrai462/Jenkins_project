@@ -82,8 +82,8 @@ pipeline {
         
         stage('Push Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'jen-doc', Variable: 'TOCKEN', usernameVariable: 'DOCKER_USERNAME')]) {
-                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                withCredentials([string(credentialsId: 'jen-doc', variable: 'DOCKER_TOKEN', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_TOKEN'
                     sh 'docker push $DOCKER_IMAGE'
                 }
             }
