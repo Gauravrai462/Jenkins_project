@@ -10,7 +10,7 @@ pipeline {
   
   environment {
         DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
-        TOCKEN= "jen-doc"
+        DOCKER_TOKEN= "jen-doc"
         DOCKER_USERNAME= "raigaurav95"
         GIT_REPO_NAME = "Jenkins_project"
         GIT_USER_NAME = "Gauravrai462"
