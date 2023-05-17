@@ -12,6 +12,8 @@ pipeline {
         DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
         DOCKER_PASSWORD= "Gaurav@12"
         DOCKER_USERNAME= "raigaurav95"
+        GIT_REPO_NAME = "Jenkins_project"
+        GIT_USER_NAME = "Gauravrai462"
        
         
         }
@@ -88,12 +90,7 @@ pipeline {
         }
 
     stage('Update Deployment File') {
-    environment {
-      
-        GIT_REPO_NAME = "Jenkins_project"
-        GIT_USER_NAME = "Gauravrai462"
-        
-        }
+    
 
     
         steps {
@@ -102,8 +99,8 @@ pipeline {
                     git config user.email "Gauravrai462@gmail.com"
                     git config user.name "Gauravrai462"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    OLD_BUILD_NUMBER = 'OLD_BUILD_NUMBER'
-                    sed -i "s/${OLD_BUILD_NUMBER}/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+             
+                    sed -i "s/${BUILD_NUMBER}/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
