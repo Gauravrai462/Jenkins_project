@@ -19,14 +19,14 @@ pipeline {
   
   stages {
     
-    stage('Clean workspace') {
+    /*stage('Clean workspace') {
                 steps {
                     cleanWs()
                     sh 'sudo rm -rf var/lib/jenkins/workspace/spring_boot'
                    
                     
                 }
-            }
+            }*/
 
     
     stage('Checkout') {
