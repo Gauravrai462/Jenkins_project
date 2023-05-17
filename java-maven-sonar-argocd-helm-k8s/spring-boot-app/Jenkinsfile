@@ -10,7 +10,7 @@ pipeline {
   
   environment {
         DOCKER_IMAGE = "raigaurav95/test:${BUILD_NUMBER}"
-        DOCKER_PASSWORD= "Gaurav@12"
+        TOCKEN= "jen-doc"
         DOCKER_USERNAME= "raigaurav95"
         GIT_REPO_NAME = "Jenkins_project"
         GIT_USER_NAME = "Gauravrai462"
@@ -82,7 +82,7 @@ pipeline {
         
         stage('Push Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-cred', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'jen-doc', Variable: 'TOCKEN', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                     sh 'docker push $DOCKER_IMAGE'
                 }
