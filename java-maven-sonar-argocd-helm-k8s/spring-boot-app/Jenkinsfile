@@ -22,14 +22,14 @@ pipeline {
   
   stages {
     
-    stage('Clean workspace') {
+    /*stage('Clean workspace') {
                 steps {
                   
                    cleanWs()
                    
                     
                 }
-            }
+            }*/
 
     
     stage('Checkout') {
@@ -83,7 +83,7 @@ pipeline {
         
         stage('Push Docker Image') {
             steps {
-                withCredentials([string(credentialsId: 'jen-doc', variable: 'DOCKER_TOKEN', usernameVariable: 'DOCKER_USERNAME')]) {
+                withCredentials([string(credentialsId: 'jen-doc', variable: 'DOCKER_TOKEN', /*usernameVariable: 'DOCKER_USERNAME'*/)]) {
                     sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_TOKEN'
                     sh 'docker push $DOCKER_IMAGE'
                 }
@@ -99,7 +99,7 @@ pipeline {
                 sh '''
                     git config user.email "Gauravrai462@gmail.com"
                     git config user.name "Gauravrai462"
-                    BUILD_NUMBER=${BUILD_NUMBER}
+                
              
                     sed -i "s|raigaurav95/test:.*|raigaurav95/test:${BUILD_NUMBER}|" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
