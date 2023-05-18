@@ -24,7 +24,7 @@ pipeline {
   
   stages {
     
-    sstage('Clean workspace') {
+    stage('Clean workspace') {
                 steps {
                     cleanWs()
                     sh 'printenv'
