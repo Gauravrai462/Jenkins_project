@@ -23,7 +23,7 @@ pipeline {
         }
 
   
-  stages {
+  /*stages {
     
     stage('Clean workspace') {
                 steps {
@@ -31,7 +31,7 @@ pipeline {
                     sh 'printenv'
                     sh 'sudo rm -rf'
                 }
-            }
+            }*/
 
 
     
