@@ -43,7 +43,7 @@ pipeline {
     }
     
     
-    tage('Build and Test') {
+    stage('Build and Test') {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
