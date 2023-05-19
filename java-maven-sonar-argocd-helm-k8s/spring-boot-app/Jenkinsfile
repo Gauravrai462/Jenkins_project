@@ -17,9 +17,9 @@ pipeline {
         DOCKER_USERNAME= "raigaurav95"
         GIT_REPO_NAME = "Jenkins_project"
         GIT_USER_NAME = "Gauravrai462"
-        DOCKER_REGISTRY= "https://hub.docker.com/"
-        DOCKER_TAG= "raigaurav95/test:${DOCKER_TAG}"
-        IMAGE_VERSION= "v_${BUILD_NUMBER}"
+        DOCKER_REGISTRY= "https://hub.docker.com"
+        DOCKER_TAG= "raigaurav95/test:${IMAGE_VERSION}"
+        IMAGE_VERSION= "${OLD_BUILD_NUMBER}"
        
         
         }
