@@ -18,7 +18,7 @@ pipeline {
         GIT_REPO_NAME = "Jenkins_project"
         GIT_USER_NAME = "Gauravrai462"
         DOCKER_REGISTRY= "https://hub.docker.com"
-        DOCKER_TAG= "raigaurav95/test"
+        DOCKER_TAG= "raigaurav95/test:"
         IMAGE_VERSION= "${OLD_BUILD_NUMBER}"
        
         
@@ -116,14 +116,7 @@ pipeline {
             }
         }
     }
-   
-   stage('Docker clean') {
-                steps {
-                    echo 'Remove Docker Image'
-                    sh "docker rmi ${DOCKER_REGISTRY}/${DOCKER_TAG}:${IMAGE_VERSION}"
-                    //sh 'docker rmi ${DOCKER_REGISTRY}'
-                }
-            }
+  
 
   }
 }
