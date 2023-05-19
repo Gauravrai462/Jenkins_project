@@ -121,9 +121,9 @@ pipeline {
                 steps {
                     echo 'Remove Docker Image'
                     sh "docker rmi ${DOCKER_REGISTRY}/${DOCKER_TAG}:${IMAGE_VERSION}"
-                    //sh "docker rmi ${DOCKER_REGISTRY}"
+                    //sh 'docker rmi ${DOCKER_REGISTRY}'
                 }
             }
 
   }
-
+}
